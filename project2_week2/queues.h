@@ -6,6 +6,7 @@
 #define TRUE 1
 #define FALSE 0
 #define MSGSIZE 141
+#define AUDIOSIZE 200000
 
 /******************** function prototypes ***********************/
 
@@ -28,4 +29,4 @@ void AddMessToQueue(char* msg_text);
 void PrintMessages(void);
 
 // begin loop to receive messages from transmitting terminal
-void StartListeningMode(int* unreadMessages, int* totalMessages);
+void StartWaitingMode(int* unreadMessages, int* totalMessages);

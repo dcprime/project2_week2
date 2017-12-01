@@ -22,8 +22,10 @@ void main(int argc, char *argv[]) {
     extern long  lBigBufSize;								// total number of samples
 
     int run = TRUE;
-    int unreadMessages = 0;
-    int totalMessages = 0;
+    int unreadText = 0;
+    int totalText = 0;
+	int unlistenedAudio = 0;
+	int totalAudio = 0;
     char choice[STRSIZE];
     char msg_text[MSGSIZE];
 
@@ -35,18 +37,23 @@ void main(int argc, char *argv[]) {
 
         // menu
         printf("\nChoose an option:\n");
-        printf("[R]ecord Audio Message\n");
+		printf("[L]isten for Incoming Audio Message\n");
+        printf("[R]ecord and Send Audio Message\n");
         printf("[P]lay Audio Message\n");
-        printf("[L]istening mode\n");
+		printf("- %d audio messages in queue (%d unheard)\n", totalAudio, unlistenedAudio);
+        printf("[W]ait for Text Message\n");
         printf("[S]end Text Message\n");
         printf("[C]heck Text Messages ");
-        printf("- %d messages in queue (%d unread)\n", totalMessages, unreadMessages);
+        printf("- %d messages in queue (%d unread)\n", totalText, unreadText);
         printf("[Q]uit\n");
-        printf("\nEnter R, P, L, S, C, or Q: ");
+        printf("\nEnter L, R, P, W, S, C, or Q: ");
 
         fgets(choice, STRSIZE, stdin);
 
         switch (tolower(choice[0])) {
+		case 'l':
+
+			break;
         case 'r':
             InitializeRecording();
             RecordBuffer(iBigBuf, lBigBufSize);
@@ -56,9 +63,9 @@ void main(int argc, char *argv[]) {
         case 'p':
             play_audio_file(lBigBufSize);
             break;
-        case 'l':
-            printf("\nListening Mode active\n");
-            StartListeningMode(&unreadMessages, &totalMessages);
+        case 'w':
+            printf("\nWaiting Mode active\n");
+            StartWaitingMode(&unreadText, &totalText);
             break;
         case 's':
             // get message input from user
@@ -77,7 +84,7 @@ void main(int argc, char *argv[]) {
             else {
                 // print all messages in queue from oldest to newest
                 PrintMessages();
-                unreadMessages = 0;
+				unreadText = 0;
                 break;
             }
         case 'q':

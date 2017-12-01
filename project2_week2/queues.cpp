@@ -76,8 +76,8 @@ void PrintMessages(void) {
     printf("\n--- End of messages ---\n");
 }
 
-/************************ listening mode  ************************/
-void StartListeningMode(int* unreadMessages, int* totalMessages) {
+/************************ waiting mode (text) ************************/
+void StartWaitingMode(int* unreadMessages, int* totalMessages) {
     int run = TRUE;
     char msgIn[MSGSIZE];        // buffer to hold incoming message
     int success = 0;
@@ -114,7 +114,7 @@ void StartListeningMode(int* unreadMessages, int* totalMessages) {
         // listening mode time out
         timeout++;
         if (timeout == TIMEOUT) {
-            printf("\n\n------------- Listening Mode timed out -------------\n");
+            printf("\n\n------------- Waiting Mode timed out -------------\n");
             run = FALSE;
         }
 

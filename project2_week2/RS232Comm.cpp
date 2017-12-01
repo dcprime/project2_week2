@@ -15,26 +15,6 @@ int nComRate = 9600;								// Baud (Bit) rate in bits/second
 int nComBits = 8;									// Number of bits per frame
 COMMTIMEOUTS timeout;								// A commtimout struct variable
 
-// The client - A testing main that calls the functions below
-/*int main() {
-
-	char msgOut[] = "Hi there person";				// Sent message
-	char msgIn[BUFSIZE];							// Received message
-	initPort();										// Initialize the port
-	outputToPort(msgOut, strlen(msgOut)+1);			// Send string to port - include space for '\0' termination
-	Sleep(1000);									// Allow time for signal propagation on cable 
-	int success = inputFromPort(msgIn, BUFSIZE);	// Receive string from port
-	if (success == 1) {
-		printf("\nMessage Received: %s\n\n", msgIn);		// Display message from port
-	}
-	else {
-		printf("\nMessage not received due to error\n");	// Indicate error in reception
-	}
-	purgePort();									// Purge the port
-	CloseHandle(hCom);								// Closes the handle pointing to the COM port
-	system("pause");
-}*/
-
 // Initializes the port and sets the communication parameters
 void initPort() {
 	createPortFile();								// Initializes hCom to point to PORT5 (port 5 is used by USB-Serial adapter on my laptop)
@@ -91,7 +71,7 @@ int inputFromPort(LPVOID buf, DWORD szBuf) {
 		return -1; // error - comm timeout
 	}
 	else if (NumberofBytesRead != 0) {
-		printf("\nSuccessful reception! There were %ld bytes read\n", NumberofBytesRead);
+		printf("\n\nSuccessful reception! There were %ld bytes read\n", NumberofBytesRead);
 		return 1;	// success
 	}
 	else {

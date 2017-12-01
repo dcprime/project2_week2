@@ -100,7 +100,6 @@ int inputFromPort(LPVOID buf, DWORD szBuf) {
 }
 
 void sendMessToPort(char *msg_text) {
-    initPort();
     outputToPort(msg_text, strlen(msg_text) + 1);
     Sleep(1000); // play with this number to see how short (or eliminate?)
     purgePort();

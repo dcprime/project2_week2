@@ -29,6 +29,7 @@ void main(int argc, char *argv[]) {
 
     // initialize the message queue
     InitQueue();
+	initPort();
 
     while (run == TRUE) {
 
@@ -81,6 +82,7 @@ void main(int argc, char *argv[]) {
             }
         case 'q':
             run = FALSE;
+			endCOM();
             break;
         default:
             printf("\nError: That option is not valid\n\n");

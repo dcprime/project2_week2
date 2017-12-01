@@ -83,8 +83,6 @@ void StartListeningMode(int* unreadMessages) {
     int success = 0;
     short dot_counter = 0;
     unsigned long timeout = 0;
-
-    initPort();
     
     while (run == TRUE) {
         success = inputFromPort(msgIn, MSGSIZE);	// Receive string from port

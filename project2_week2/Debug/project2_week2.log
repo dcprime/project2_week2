@@ -1,5 +1,6 @@
 ﻿  queues.cpp
   project2_week2_main.cpp
+  RS232Comm.cpp
   Generating Code...
   project2_week2.vcxproj -> C:\Project 2 Code\project2_week2\Debug\project2_week2.exe
   project2_week2.vcxproj -> C:\Project 2 Code\project2_week2\Debug\project2_week2.pdb (Partial PDB)

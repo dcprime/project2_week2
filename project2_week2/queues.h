@@ -28,4 +28,4 @@ void AddMessToQueue(char* msg_text);
 void PrintMessages(void);
 
 // begin loop to receive messages from transmitting terminal
-void StartListeningMode(int* unreadMessages);
+void StartListeningMode(int* unreadMessages, int* totalMessages);

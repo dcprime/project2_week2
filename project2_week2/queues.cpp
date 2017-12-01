@@ -77,7 +77,7 @@ void PrintMessages(void) {
 }
 
 /************************ listening mode  ************************/
-void StartListeningMode(int* unreadMessages) {
+void StartListeningMode(int* unreadMessages, int* totalMessages) {
     int run = TRUE;
     char msgIn[MSGSIZE];        // buffer to hold incoming message
     int success = 0;
@@ -92,9 +92,10 @@ void StartListeningMode(int* unreadMessages) {
 
             // increment number of unread messages
             (*unreadMessages)++;
+			(*totalMessages)++;
 
             // update the listening status 
-            printf("\nMessage received: %d unread messages in queue\n\n", *unreadMessages);
+            printf("\n%d unread messages in queue\n\n", *unreadMessages);
 
             // reset success status
             success = 0;

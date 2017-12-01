@@ -91,7 +91,7 @@ int inputFromPort(LPVOID buf, DWORD szBuf) {
 		return -1; // error - comm timeout
 	}
 	else if (NumberofBytesRead != 0) {
-		printf("\nSuccessful reception!, There were %ld bytes read\n", NumberofBytesRead);
+		printf("\nSuccessful reception! There were %ld bytes read\n", NumberofBytesRead);
 		return 1;	// success
 	}
 	else {

@@ -23,7 +23,7 @@ void main(int argc, char *argv[]) {
 
     int run = TRUE;
     int unreadMessages = 0;
-    int readMessages = 0;
+    int totalMessages = 0;
     char choice[STRSIZE];
     char msg_text[MSGSIZE];
 
@@ -40,7 +40,7 @@ void main(int argc, char *argv[]) {
         printf("[L]istening mode\n");
         printf("[S]end Text Message\n");
         printf("[C]heck Text Messages ");
-        printf("- %d unread messages in queue\n", unreadMessages);
+        printf("- %d messages in queue (%d unread)\n", totalMessages, unreadMessages);
         printf("[Q]uit\n");
         printf("\nEnter R, P, L, S, C, or Q: ");
 
@@ -58,7 +58,7 @@ void main(int argc, char *argv[]) {
             break;
         case 'l':
             printf("\nListening Mode active\n");
-            StartListeningMode(&unreadMessages);
+            StartListeningMode(&unreadMessages, &totalMessages);
             break;
         case 's':
             // get message input from user

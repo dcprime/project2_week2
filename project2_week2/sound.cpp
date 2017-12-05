@@ -13,8 +13,12 @@ Details: Implementation - Contains functions for Windows sound API (sound record
 #include "sound.h"
 
 // BUFFERS
+// sending buffer
 short iBigBuf[SAMPLES_SEC * RECORD_TIME];
 long  lBigBufSize = SAMPLES_SEC * RECORD_TIME;	// total number of samples
+
+// receiving buffer - same size as above
+short iBigBufIn[SAMPLES_SEC * RECORD_TIME];
 
 // output and input channel parameters 
 static	int			g_nSamplesPerSec = SAMPLES_SEC;

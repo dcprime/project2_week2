@@ -14,8 +14,7 @@
 #include "queues.h"
 #include "RS232Comm.h"
 
-#define LOOPDELAY 1      // number of times to loop in listening mode before printing '.'
-#define TIMEOUT 30      // number of times to loop in listening mode before timeout
+
 
 static Node *pNode, *pHead, *pTail;
 

@@ -39,7 +39,7 @@ void main(int argc, char *argv[]) {
         printf("\nChoose an option:\n");
 		printf("[L]isten for Incoming Audio Message\n");
         printf("[R]ecord and Send Audio Message\n");
-        printf("[P]lay Audio Message\n");
+        printf("[P]lay Audio Message");
 		printf("- %d audio messages in queue (%d unheard)\n", totalAudio, unlistenedAudio);
         printf("[W]ait for Text Message\n");
         printf("[S]end Text Message\n");
@@ -52,7 +52,8 @@ void main(int argc, char *argv[]) {
 
         switch (tolower(choice[0])) {
 		case 'l':
-
+			printf("\nListening Mode active\n");
+			StartListeningMode(&unlistenedAudio, &totalAudio);
 			break;
         case 'r':
             InitializeRecording();
@@ -61,7 +62,7 @@ void main(int argc, char *argv[]) {
             save_and_send(iBigBuf, lBigBufSize);
             break;
         case 'p':
-            play_audio_file(lBigBufSize);
+            play_audio_file(totalAudio);
             break;
         case 'w':
             printf("\nWaiting Mode active\n");

@@ -16,9 +16,7 @@
 /* ************************ */
 // Playback
 int InitializePlayback(void);
-	
 int PlayBuffer(short *piBuf, long lSamples);
-	
 void ClosePlayback(void);
 
 // Recording

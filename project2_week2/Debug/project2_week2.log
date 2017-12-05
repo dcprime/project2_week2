@@ -1,9 +1,4 @@
-﻿  queues.cpp
-  project2_week2_main.cpp
-  audio.cpp
-  RS232Comm.cpp
-  Generating Code...
-c:\project 2 code\project2_week2\project2_week2\audio.cpp(59): warning C4715: 'play_audio_file': not all control paths return a value
-c:\project 2 code\project2_week2\project2_week2\audio.cpp(39): warning C4715: 'save_and_send': not all control paths return a value
+﻿  audio.cpp
+c:\project 2 code\project2_week2\project2_week2\audio.cpp(47): warning C4715: 'save_and_send': not all control paths return a value
   project2_week2.vcxproj -> C:\Project 2 Code\project2_week2\Debug\project2_week2.exe
   project2_week2.vcxproj -> C:\Project 2 Code\project2_week2\Debug\project2_week2.pdb (Partial PDB)

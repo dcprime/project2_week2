@@ -8,6 +8,8 @@
 #define BUFSIZE 140									// Size of buffer
 #define COMPORT "\\\\.\\COM10"								// COM port used for transmit / receive
 
+extern long lBigBufSize;	// total number of samples in buffer
+
 // Ensure that default character set is not Unicode
 // Communication variables and parameters
 HANDLE hCom;										// Pointer to a COM port
@@ -28,7 +30,7 @@ void purgePort() {
 	PurgeComm(hCom, PURGE_RXABORT | PURGE_RXCLEAR | PURGE_TXABORT | PURGE_TXCLEAR);
 }
 
-// Output message to port (COM4)
+// Output message to port
 void outputToPort(LPCVOID buf, DWORD szBuf) {
 	int i=0;
 	DWORD NumberofBytesTransmitted;
@@ -56,7 +58,6 @@ int inputFromPort(LPVOID buf, DWORD szBuf) {
 	DWORD NumberofBytesRead;
 	LPDWORD lpErrors = 0;
 	LPCOMSTAT lpStat = 0;
-
 	i = ReadFile(
 		hCom,										// Read handle pointing to COM port
 		buf,										// Buffer size
@@ -83,6 +84,12 @@ void sendMessToPort(char *msg_text) {
     outputToPort(msg_text, strlen(msg_text) + 1);
     Sleep(1000); // play with this number to see how short (or eliminate?)
     purgePort();
+}
+
+void sendAudioToPort(char *audio_message) {
+	outputToPort(audio_message, lBigBufSize);
+	Sleep(1000); // play with this number to see how short (or eliminate?)
+	purgePort();
 }
 
 void endCOM(void) {

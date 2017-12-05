@@ -7,6 +7,8 @@
 #define FALSE 0
 #define MSGSIZE 141
 #define AUDIOSIZE 200000
+#define LOOPDELAY 1      // number of times to loop in listening mode before printing '.'
+#define TIMEOUT 30      // number of times to loop in listening mode before timeout
 
 /******************** function prototypes ***********************/
 

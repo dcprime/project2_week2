@@ -63,6 +63,7 @@ void main(int argc, char *argv[]) {
             break;
         case 'p':
             play_audio_file(totalAudio);
+			unlistenedAudio = 0;
             break;
         case 'w':
             printf("\nWaiting Mode active\n");

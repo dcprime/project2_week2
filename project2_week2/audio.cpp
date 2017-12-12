@@ -19,12 +19,14 @@ FILE* f;
 
 extern short iBigBufIn[];	// receiving buffer
 extern long lBigBufSize;	// total number of samples in buffer
+const int audio_as_char = SAMPLES_SEC * RECORD_TIME * (sizeof(short) / sizeof(char));
+char audio_out[audio_as_char];
 
 int save_and_send(short* iBigBuf, long lBigBufSize) {
 	char send;
 	printf("\nWould you like to send your audio recording? (y/n): ");
 	scanf_s("%c", &send, 1);
-	while ((c = getchar()) != '\n' && c != EOF) {}								// Flush other input
+	while ((c = getchar()) != '\n' && c != EOF) {}		// Flush other input
 	if ((send == 'y') || (send == 'Y')) {
 		/* ----- function to write out to file ---------
 		fopen_s(&f, filename, "wb");
@@ -37,8 +39,10 @@ int save_and_send(short* iBigBuf, long lBigBufSize) {
 		fclose(f);*/
 
 		printf("\nSending audio recording to receiver ...\n");
-		sendAudioToPort((char*)iBigBuf);
-		printf("Audio recording sent!\n");
+		memcpy(audio_out, iBigBuf, audio_as_char);
+		outputToPort(audio_out, audio_as_char);
+		Sleep(1000); // play with this number to see how short (or eliminate?)
+		purgePort();
 		return 1;
 	}
 }
@@ -67,15 +71,15 @@ void StartListeningMode(int* unlistenedAudio, int* totalAudio) {
 
 	int run = TRUE;
 	int success = 0;
-	char audioIn[SAMPLES_SEC * RECORD_TIME];
+	char audioIn[audio_as_char];
 	short dot_counter = 0;
 	unsigned long timeout = 0;
 
 	while (run == TRUE) {
-		success = inputFromPort(audioIn, lBigBufSize);	// Receive audio from port
+		success = inputFromPort(audioIn, audio_as_char);	// Receive audio from port
 		if (success == 1) {
 			// copy audio to iBigBufIn
-			memcpy(iBigBufIn, audioIn, lBigBufSize);
+			memcpy(iBigBufIn, audioIn, audio_as_char);
 
 			// increment number of unread messages
 			(*unlistenedAudio)++;
@@ -92,12 +96,12 @@ void StartListeningMode(int* unlistenedAudio, int* totalAudio) {
 			run = FALSE;
 		}
 
-		// print a dot every LOOPDELAY times through the loop to show Listening Mode is active
+		/* print a dot every LOOPDELAY times through the loop to show Listening Mode is active
 		dot_counter++;
 		if (dot_counter == AUDIOLOOPDELAY) {
 			printf(".");
 			dot_counter = 0;
-		}
+		}*/
 
 		// listening mode time out
 		timeout++;

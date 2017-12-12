@@ -13,7 +13,7 @@ extern long lBigBufSize;	// total number of samples in buffer
 // Ensure that default character set is not Unicode
 // Communication variables and parameters
 HANDLE hCom;										// Pointer to a COM port
-int nComRate = 9600;								// Baud (Bit) rate in bits/second 
+int nComRate = 57600;								// Baud (Bit) rate in bits/second 
 int nComBits = 8;									// Number of bits per frame
 COMMTIMEOUTS timeout;								// A commtimout struct variable
 
@@ -84,12 +84,6 @@ void sendMessToPort(char *msg_text) {
     outputToPort(msg_text, strlen(msg_text) + 1);
     Sleep(1000); // play with this number to see how short (or eliminate?)
     purgePort();
-}
-
-void sendAudioToPort(char *audio_message) {
-	outputToPort(audio_message, lBigBufSize);
-	Sleep(1000); // play with this number to see how short (or eliminate?)
-	purgePort();
 }
 
 void endCOM(void) {

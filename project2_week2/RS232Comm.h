@@ -7,7 +7,6 @@ void purgePort();
 void outputToPort(LPCVOID buf, DWORD szBuf);
 int inputFromPort(LPVOID buf, DWORD szBuf);
 void sendMessToPort(char *msg_text);
-void sendAudioToPort(char *audio_message);
 void endCOM(void);
 
 // Sub functions
